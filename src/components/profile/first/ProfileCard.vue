@@ -1,28 +1,53 @@
 <template>
-    <v-card class="profile-card" color="background" elevation="0">
-        <v-card class="d-flex pa-4 rounded-lg">
-            <v-card class="pa-0" flat elevation="0" v-if="false">
-                <ImageInputBaseCircle @loadPhoto="loadingPhoto" />
+    <v-card class="profile-card__container" color="background" elevation="0">
+        <v-card class="profile-card">
+
+            <!-- Компонент для загрузки новой аватарки -->
+            <v-card v-if="false" class="pa-0" flat elevation="0" >
+                <ImageInputBaseCircle @loadPhoto="loadingPhoto"/>
             </v-card>
+
+            <!-- Шаблон отображает аватарку или заглушку в случае если аватарки нет -->
             <template v-else>
                 <v-avatar v-if="props.data?.avatar" :image="props.data.avatar" size="152"></v-avatar>
                 <img v-else class="avatar-stab" src="@/assets/base/empty-user.svg" alt="avatar-stab"  />
             </template>
+
+            <!-- Блок взаимодействия с карточкой пользователя -->
             <v-card class="block-actions">
-                <v-card-title class="pa-1">{{
-                    (props.data?.first_name ?? "") + " " + (props.data?.last_name ?? "")
-                }}</v-card-title>
+
+                <!-- Полное имя пользователя -->
+                <v-card-title class="profile-card__fullname">
+                    {{ props.data?.fullName }}
+                </v-card-title>
+
+                <!-- Кнопки `Подробнее` -->
                 <v-card-actions class="d-flex align-center">
-                    <v-text><v-icon class="mr-2">mdi-google-maps</v-icon>Подробнее</v-text>
-                    <v-btn @click="dialog = !dialog" variant="text" class="text-subtitle-2 ml-2"><v-icon
-                            class="mr-2">mdi-information-outline</v-icon>Подробнее</v-btn>
+
+                    <!-- Кнопка Подробнее (о местоположении) -->
+                    <v-btn variant="text" class="text-subtitle-2 ml-2">
+                        <v-icon class="mr-2">
+                            mdi-google-maps
+                        </v-icon>
+                        Подробнее
+                    </v-btn>
+                    <!-- Кнопка Подробнее (о аккаунте пользователя) -->
+                    <v-btn @click="dialog = !dialog" variant="text" class="text-subtitle-2 ml-2">
+                        <v-icon class="mr-2">
+                            mdi-information-outline
+                        </v-icon>
+                        Подробнее
+                    </v-btn>
                 </v-card-actions>
+
                 <v-card-actions>
+                    <!-- Кнопка Редактировать профиль -->
                     <v-btn variant="tonal" class="edit-btn text-text text-subtitle-1" :to="'change'">Редактировать профиль</v-btn>
                 </v-card-actions>
             </v-card>
         </v-card>
 
+        <!-- Диалоговое окно для просмотра информации о пользователе -->
         <v-dialog v-model="dialog" width="650">
             <InformationCard :data="props.data" @close="close" />
         </v-dialog>
@@ -55,11 +80,19 @@ function close() {
 </script>
 
 <style scoped>
-.profile-card {
+.profile-card__container {
     font-family: "Nunito Sans", sans-serif !important;
     padding: 2px;
 }
+.profile-card {
+    display: flex !important;
+    padding: 16px 16px 16px 40px !important;
+    border-radius: 8px !important;
+}
 .block-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     box-shadow: none !important;
     padding: 12px !important;
 }

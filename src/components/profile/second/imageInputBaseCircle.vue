@@ -12,8 +12,8 @@
             </slot>
         </label>
     </div>
-    <div :style="{}" @dragleave="onDragLeave" @dragover.prevent="onDragOver"
-        style="width: 168px; height: 168px; border-radius: 100px" v-else class="relative no-select selected-image mt-2">
+    <div v-else :style="{}" @dragleave="onDragLeave" @dragover.prevent="onDragOver"
+        style="width: 168px; height: 168px; border-radius: 100px" class="relative no-select selected-image mt-2">
         <label @drop.prevent="handleFileDrop" :style="{}" style="width: 168px; height: 168px; border-radius: 100px"
             :for="`${uid}` + '-input'" :class="{ 'is-drag-over': isDragOver }" class="hover-label pointer">
             <img alt="" :src="imgSrc" :style="{}" style="
