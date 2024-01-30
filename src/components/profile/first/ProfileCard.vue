@@ -42,13 +42,15 @@
 
                 <v-card-actions>
                     <!-- Кнопка Редактировать профиль -->
-                    <v-btn variant="tonal" class="edit-btn text-text text-subtitle-1" :to="'change'">Редактировать профиль</v-btn>
+                    <v-btn class="edit-btn text-text text-subtitle-1" variant="tonal">
+                        Редактировать профиль
+                    </v-btn>
                 </v-card-actions>
             </v-card>
         </v-card>
 
         <!-- Диалоговое окно для просмотра информации о пользователе -->
-        <v-dialog v-model="dialog" width="650">
+        <v-dialog class="profile-card__information-dialog" v-model="dialog">
             <InformationCard :data="props.data" @close="close" />
         </v-dialog>
     </v-card>
@@ -101,5 +103,8 @@ function close() {
 }
 .edit-btn {
     font-family: "Nunito Sans", sans-serif !important;
+}
+.profile-card__information-dialog {
+    width: 650px;
 }
 </style>
