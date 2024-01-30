@@ -25,14 +25,14 @@
                 <v-card-actions class="d-flex align-center">
 
                     <!-- Кнопка Подробнее (о местоположении) -->
-                    <v-btn variant="text" class="text-subtitle-2 ml-2">
+                    <v-btn class="more-details text-subtitle-2 ml-2" variant="text">
                         <v-icon class="mr-2">
                             mdi-google-maps
                         </v-icon>
                         Подробнее
                     </v-btn>
                     <!-- Кнопка Подробнее (о аккаунте пользователя) -->
-                    <v-btn @click="dialog = !dialog" variant="text" class="text-subtitle-2 ml-2">
+                    <v-btn class="more-details text-subtitle-2 ml-2" @click="dialog = !dialog" variant="text">
                         <v-icon class="mr-2">
                             mdi-information-outline
                         </v-icon>
@@ -98,6 +98,9 @@ function close() {
     box-shadow: none !important;
     padding: 12px !important;
 }
+.more-details {
+    font-family: "Nunito Sans", sans-serif !important;
+} 
 .avatar-stab {
     width: 152px;
 }
