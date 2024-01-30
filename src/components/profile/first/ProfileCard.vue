@@ -2,7 +2,7 @@
     <v-card class="profile-card__container" color="background" elevation="0">
         <v-card class="profile-card">
 
-            <!-- Компонент для загрузки новой аватарки -->
+            <!-- Компонент для загрузки или создания аватарки -->
             <v-card v-if="false" class="pa-0" flat elevation="0" >
                 <ImageInputBaseCircle @loadPhoto="loadingPhoto"/>
             </v-card>

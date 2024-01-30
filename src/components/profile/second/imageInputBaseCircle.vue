@@ -1,27 +1,35 @@
 <template>
-    <div class="input-container d-flex align-center no-select mt-2 img-avatar" v-if="!modelValue" @dragleave="onDragLeave"
-        @dragover.prevent="onDragOver" @drop.prevent="handleFileDrop"
-        style="border-radius: 100px; width: 168px; height: 168px" :style="{}">
-        <label :for="`${uid}` + '-input'"
-            class="file-wrapper no-selected-image pointer d-flex flex-column align-center justify-center" :style="{
+    <!-- Блок позволяет добавлять новую аватарку (Иконка камеры) -->
+    <div v-if="true" 
+    class="input-container"  
+    @dragleave="onDragLeave"
+    @dragover.prevent="onDragOver" 
+    @drop.prevent="handleFileDrop"
+    >
+        <!-- Label используется как нативный HTML-тег. Триггерит input-file для ввода файлов -->
+        <label for="input-file"
+            class="file-wrapper no-selected-image" 
+            :style="{
                 backgroundColor: currentBackgroundColor,
                 color: currentTextColor,
-            }" style="background: #edeff2">
-            <slot name="empty-layout d-flex align-center">
-                <v-icon icon="mdi-camera-outline" class="text-h4" color="primary"></v-icon>
-            </slot>
+            }">
+                <v-icon class="icon-load" icon="mdi-camera-outline" color="primary"></v-icon>
         </label>
     </div>
-    <div v-else :style="{}" @dragleave="onDragLeave" @dragover.prevent="onDragOver"
-        style="width: 168px; height: 168px; border-radius: 100px" class="relative no-select selected-image mt-2">
-        <label @drop.prevent="handleFileDrop" :style="{}" style="width: 168px; height: 168px; border-radius: 100px"
-            :for="`${uid}` + '-input'" :class="{ 'is-drag-over': isDragOver }" class="hover-label pointer">
-            <img alt="" :src="imgSrc" :style="{}" style="
-          border-radius: 100px;
-          width: 168px;
-          height: 168px;
-          object-fit: cover;
-        " class="" />
+
+    <!-- ХЗ Что это такое блять этот черт заебал уже со своим говнокодом -->
+    <div v-else 
+    class="govno selected-image"
+    @dragleave="onDragLeave" 
+    @dragover.prevent="onDragOver"
+    >
+        <label 
+        class="hover-label pointer"
+        :class="{ 'is-drag-over': isDragOver }" 
+        @drop.prevent="handleFileDrop" 
+        for="input-file" 
+        >
+            <img class="nothing" alt="govno" :src="imgSrc" />
         </label>
         <!-- <svg
         class="v-icon"
@@ -39,19 +47,35 @@
           fill="#FFFFFF"
         />
       </svg> -->
-        <v-btn flat v-if="removable" size="mini" variant="text" density="compact" icon="mdi-close"
-            class="bg-primary rounded" rounded="0" style="margin-top: -355px; margin-left: 145px"
-            @click="removeImage"></v-btn>
+        <v-btn 
+        v-if="removable" 
+        class="bg-primary rounded" 
+        flat 
+        size="mini" 
+        variant="text" 
+        density="compact" 
+        icon="mdi-close"
+        rounded="0" 
+        style="margin-top: -355px; margin-left: 145px"
+        @click="removeImage"
+        >
+        </v-btn>
     </div>
-    <input type="file" style="display: none" :id="`${uid}` + '-input'" :value="!modelValue ? modelValue : null"
-        @change="handleFileInput" />
+
+    <!-- Поле ввода для новой аватарки -->
+    <input 
+    type="file" 
+    v-show="false"
+    id="input-file" 
+    :value="!modelValue ? modelValue : null"
+    @change="handleFileInput" />
 </template>
   
 <script>
-let uid = 0;
 export default {
     name: "ImageInput",
     emits: ["update:modelValue", "load:image", "loadPhoto"],
+    // Не понимаю нахрена столько много реквизитов
     props: {
         modelValue: {
             type: [Object, String, null],
@@ -103,9 +127,7 @@ export default {
         },
     },
     data() {
-        uid += 1;
         return {
-            uid: `image-input${uid}`,
             isDragOver: false,
             imgSrc: null,
         };
@@ -174,21 +196,31 @@ export default {
   
 <style scoped>
 .input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top: 12px;
+    width: 168px;
+    height: 168px;
+    border-radius: 100px;
+    border: 1px solid #ccc;
+    cursor: pointer;
     overflow: hidden;
-    width: fit-content;
+    /* width: fit-content; */
 }
-
 .no-selected-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: #edeff2;
     border-radius: 100px;
     transition: all 0.3s;
 }
-
 .no-selected-image:hover {
     color: #1b7feb !important;
     background: #cee7ff !important;
 }
-
 .v-icon {
     position: absolute;
     margin-left: -15px;
@@ -210,6 +242,12 @@ export default {
     left: 0;
     height: 100%;
     width: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #edeff2 !important;
+    cursor: pointer;
 }
 .file-wrapper input {
     opacity: 0;
@@ -219,6 +257,28 @@ export default {
     left: 0;
     right: 0;
 }
+.icon-load {
+    margin: auto;
+    font-size: 2.5rem !important;
+    line-height: 1.2 !important;
+    font-weight: 500 !important;
+}
+
+.govno {
+    position: relative !important;
+    width: 168px !important; 
+    height: 168px !important; 
+    margin-top: 16px !important;
+    user-select: none !important;
+    border-radius: 100px !important;
+} 
+.nothing {
+    border-radius: 100px;
+    width: 168px;
+    height: 168px;
+    object-fit: cover;
+}
+
 .hover-label {
     transition: all 0.3s;
 }
