@@ -160,7 +160,7 @@
         </v-card>
     </v-dialog>
 
-
+    <!-- ??? НУЖЕН ЛИ ??? -->
     <v-dialog v-model="dialogAlbum" width="500">
         <v-form v-model="isFormValid" ref="refAlbumForm" lazy-validation>
             <v-card color="white">
@@ -202,19 +202,21 @@
         </v-form>
     </v-dialog>
 
+    <!-- ??? Модальное окно для создания альбома ??? -->
     <v-dialog v-model="dialogDataAlbum" width="500">
         <AlbumDialog @update="updateDataAlbum" />
     </v-dialog>
 
+    <!-- ??? Форма для добавления новых фотографий ??? -->
     <v-dialog v-model="dialogDataPhoto" width="1000">
-        <PhotoDialog @close="closeDialogDataPhoto" :albumsList="albumsArr" @update="updateDataAlbum" />
+        <PhotoDialogComp @close="closeDialogDataPhoto" :albumsList="albumsArr" @update="updateDataAlbum" />
     </v-dialog>
 </template>
   
 <script setup>
 // import MasonryDialog from "../third/MasonryDialog.vue";
-// import AlbumDialog from "@/views/media/components/AlbumDialog.vue";
-// import PhotoDialog from "@/views/media/components/PhotoDialog.vue";
+import AlbumDialog from "../third/AlbumDialog.vue";
+import PhotoDialogComp from "../third/PhotoDialogComp.vue";
 // import router from "@/router";
 // import { mediaApi } from "@/api/mediaApi";
 // const { getAlbums, changeAlbum, deleteAlbum, getPhotos } = mediaApi();
@@ -225,7 +227,7 @@ const dialog = ref(false);
 const dialogAlbum = ref(false);
 const changeArea = ref(false);
 const dialogDataAlbum = ref(false);
-const dialogDataPhoto = ref(false);
+const dialogDataPhoto = ref(true);
 // const albumData = ref({
 //     body: null,
 // });
@@ -250,10 +252,10 @@ const error = ref(false);
 const errorMessages = ref("");
 
 const rules = ref([
-    (value) => value.length <= 150 || "Максимальная длина описания 150 символов",
+    (value) => value?.length <= 150 || "Максимальная длина описания 150 символов",
 ]);
 const rulesNull = ref([
-    (value) => (value && value.length > 0) || "Это обязательное поле",
+    (value) => (value && value?.length > 0) || "Это обязательное поле",
 ]);
 
 
