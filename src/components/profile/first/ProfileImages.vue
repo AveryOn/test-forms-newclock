@@ -55,7 +55,7 @@
         <albumsUser @selectAlbum="selectAlbumInDialog" @close="closeAlbumsDialog"></albumsUser>
     </v-dialog>
 
-<!-- ё    
+<!--     
     <v-dialog v-model="albumsSelectUserDialog" location-strategy="connected" scroll-strategy="none"
         class="d-flex align-center justify-center w-100" width="100vw" height="vw">
         <selectAlbumsUser :idAlbum="selectAlbumId" @close="closeAlbumsSelectDialog"></selectAlbumsUser>
