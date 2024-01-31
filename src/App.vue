@@ -1,11 +1,13 @@
 <template>
     <v-app>
-        <profileInfoComp/>
+        <!-- <profileInfoComp/> -->
+        <profileChangeComp/>
     </v-app>
 </template>
 
 <script setup>
-import profileInfoComp from './components/profile/profileInfoComp.vue';
+// import profileInfoComp from './components/profile/info/profileInfoComp.vue';
+import profileChangeComp from './components/profile/change/profileChangeComp.vue';
 </script>
 
 <style>

@@ -34,11 +34,11 @@
   
 <script setup>
 import { ref, reactive, onMounted } from "vue";
-import ProfileCardComp from "./first/ProfileCardComp.vue";
-import ProfileImages from "./first/ProfileImages.vue";
-import WhatIsNewComp from "./first/WhatIsNewComp.vue";
-import LogsProfileComp from "./first/LogsProfileComp.vue";
-import FamilyCardComp from "./first/FamilyCardComp.vue";
+import ProfileCardComp from "../first/ProfileCardComp.vue";
+import ProfileImages from "../first/ProfileImages.vue";
+import WhatIsNewComp from "../first/WhatIsNewComp.vue";
+import LogsProfileComp from "../first/LogsProfileComp.vue";
+import FamilyCardComp from "../first/FamilyCardComp.vue";
 //   import { profileApi } from "../../api/profileApi";
 // const { getUser } = profileApi();
 
