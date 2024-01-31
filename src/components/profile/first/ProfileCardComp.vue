@@ -51,13 +51,13 @@
 
         <!-- Диалоговое окно для просмотра информации о пользователе -->
         <v-dialog class="profile-card__information-dialog" v-model="dialog">
-            <InformationCard :data="props.data" @close="close" />
+            <InformationCardComp :data="props.data" @close="close" />
         </v-dialog>
     </v-card>
 </template>
 
 <script setup>
-import InformationCard from "../second/InformationCard.vue";
+import InformationCardComp from "../second/InformationCardComp.vue";
 import ImageInputBaseCircle from "../second/imageInputBaseCircle.vue";
 import { ref, defineProps } from "vue";
 // import { profileApi } from "@/api/profileApi";

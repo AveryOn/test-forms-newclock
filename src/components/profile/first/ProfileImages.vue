@@ -22,9 +22,9 @@
         <v-btn variant="tonal" class="text-text text-none" @click="photosDialog = true">Загрузить фото</v-btn>
     </v-card-actions>
 
-    <!-- <v-dialog v-model="photosDialog" width="1000">
-        <PhotoDialog @close="closeDialogDataPhoto" :albumsList="albumsArr" @update="updateDataAlbum" />
-    </v-dialog> -->
+    <v-dialog v-model="photosDialog" width="1000">
+        <PhotoDialogComp @close="closeDialogDataPhoto" :albumsList="albumsArr" @update="updateDataAlbum" />
+    </v-dialog>
 
     <!-- <v-dialog v-model="imgOverlay" location-strategy="connected" scroll-strategy="none"
         class="d-flex align-center justify-center w-100" width="1000">
@@ -52,21 +52,21 @@
     <!-- Модальное окно. Блок альбомов и фотографий -->
     <v-dialog v-model="albumsUserDialog" location-strategy="connected" scroll-strategy="none"
         class="d-flex align-center justify-center w-100" width="100vw" height="vw">
-        <albumsUser @selectAlbum="selectAlbumInDialog" @close="closeAlbumsDialog"></albumsUser>
+        <albumsUser @selectAlbum="selectAlbumInDialog" @close="closeAlbumsDialog" />
     </v-dialog>
 
-<!--     
+    
     <v-dialog v-model="albumsSelectUserDialog" location-strategy="connected" scroll-strategy="none"
         class="d-flex align-center justify-center w-100" width="100vw" height="vw">
-        <selectAlbumsUser :idAlbum="selectAlbumId" @close="closeAlbumsSelectDialog"></selectAlbumsUser>
-    </v-dialog> -->
+        <selectAlbumsUserComp :idAlbum="selectAlbumId" @close="closeAlbumsSelectDialog" />
+    </v-dialog>
 </template>
 
 <script setup>
 // import { mediaApi } from "../../../api/mediaApi.js";
-// import PhotoDialog from "../../../views/media/components/PhotoDialog.vue";
-// import selectAlbumsUser from "@/components/Profile/Dialogs/selectAlbumsUser.vue";
 // const { getPhotos, getAlbums, deletePhotos } = mediaApi();
+import PhotoDialogComp from "../third/PhotoDialogComp.vue";
+import selectAlbumsUserComp from "../second/selectAlbumsUserComp.vue";
 import albumsUser from "../second/albumsUser.vue";
 import { ref } from 'vue';
 
@@ -74,8 +74,8 @@ const photosArr = ref([{}, {}, {},]);
 // const albumsArr = ref([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},]);
 const photosDialog = ref(false);
 const imgOverlay = ref(false);
-const albumsSelectUserDialog = ref(false);
 const selectAlbumId = ref(null);
+const albumsSelectUserDialog = ref(false);
 const albumsUserDialog = ref(false);
 const img = ref(null);
 

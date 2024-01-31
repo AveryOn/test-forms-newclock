@@ -27,7 +27,7 @@
             <!-- ??? Компонент для показа уведомлений ???  -->
             <LogsProfileComp />
             <!-- ??? Компонент для отображения членов семьи ??? -->
-            <FamilyCard />
+            <FamilyCardComp />
         </v-card>
     </v-card>
 </template>
@@ -38,7 +38,7 @@ import ProfileCardComp from "./first/ProfileCardComp.vue";
 import ProfileImages from "./first/ProfileImages.vue";
 import WhatIsNewComp from "./first/WhatIsNewComp.vue";
 import LogsProfileComp from "./first/LogsProfileComp.vue";
-import FamilyCard from "./first/FamilyCard.vue";
+import FamilyCardComp from "./first/FamilyCardComp.vue";
 //   import { profileApi } from "../../api/profileApi";
 // const { getUser } = profileApi();
 

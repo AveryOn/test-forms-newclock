@@ -135,11 +135,14 @@
         <v-card color="white" elevation="0" class="pa-4 pt-0">
             <v-card-title>Все файлы</v-card-title>
             <v-card class="pa-4 pt-0" elevation="0" color="white">
-                <MasonryDialog @update="updateDataPhotos" :photos="photosArr" />
+                <!-- <MasonryDialog @update="updateDataPhotos" :photos="photosArr" /> -->
             </v-card>
         </v-card>
-        
     </v-card>
+
+                        <!-- ДИАЛОГОВЫЕ ОКНА -->
+
+    <!-- Диалоговое окно для изменения имени альбома -->
     <v-dialog v-model="dialog" width="500">
         <v-card color="white" elevation="0" flat>
             <v-form v-model="isFormValid" ref="refAlbumForm" lazy-validation>
@@ -156,6 +159,7 @@
             </v-form>
         </v-card>
     </v-dialog>
+
 
     <v-dialog v-model="dialogAlbum" width="500">
         <v-form v-model="isFormValid" ref="refAlbumForm" lazy-validation>
@@ -208,7 +212,7 @@
 </template>
   
 <script setup>
-// import MasonryDialog from "@/components/MasonryDialog.vue";
+// import MasonryDialog from "../third/MasonryDialog.vue";
 // import AlbumDialog from "@/views/media/components/AlbumDialog.vue";
 // import PhotoDialog from "@/views/media/components/PhotoDialog.vue";
 // import router from "@/router";
@@ -237,8 +241,8 @@ const albumsArr = ref([
     {id:8, name: 'example', custom_date: 1706618587996}, 
     {id:9, name: 'example', custom_date: 1706618587996},
 ]);
-const photosArr = ref([]);
-const selectAlbumData = ref();
+// const photosArr = ref([]);
+const selectAlbumData = ref({name: ''});
 // const parentData = ref();
 const refAlbumForm = ref();
 const isFormValid = ref(true);
@@ -265,9 +269,9 @@ function closeDialog() {
 function updateDataAlbum() {
     console.log('updateDataAlbum');
 }
-function updateDataPhotos() {
-    console.log('updateDataPhotos');
-}
+// function updateDataPhotos() {
+//     console.log('updateDataPhotos');
+// }
 function selectAlbum(album) {
     console.log('selectAlbum', album);
 }
