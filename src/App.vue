@@ -1,10 +1,11 @@
 <template>
     <v-app>
-        hello
+        <clocksSelect/>
     </v-app>
 </template>
 
 <script setup>
+import clocksSelect from './components/clocksSelect.vue';
 </script>
 
 <style>

@@ -9,7 +9,6 @@ import * as directives from 'vuetify/directives';
 import * as icons from "@mdi/font/css/materialdesignicons.css";
 
 
-
 const vuetify = createVuetify({
     defaults: {
       VTextField: {
