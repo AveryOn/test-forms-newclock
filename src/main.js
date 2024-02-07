@@ -1,7 +1,6 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import './registerServiceWorker';
-import MasonryWall from "@yeger/vue-masonry-wall";
 import 'vuetify/styles';
 import { createVuetify } from 'vuetify';
 import 'vuetify/styles';
@@ -55,6 +54,5 @@ const vuetify = createVuetify({
 const app = createApp(App);
 
 app
-    .use(MasonryWall)
     .use(vuetify)
     .mount('#app');
