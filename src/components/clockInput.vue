@@ -59,20 +59,23 @@ function handleFileDrop(event) {
     const droppedFile = event.dataTransfer.files[0];
     if (!droppedFile) return;
     isDragOver.value = false;
-    loadImage(droppedFile);
+    const blobFile = loadImage(droppedFile);
+    emit("update:modelValue", blobFile);
 }
 
 function handleFileInput(event) {
     const file = event.target.files[0];
     if (!file) return;
-    loadImage(file);
+    const blobFile = loadImage(file);
+    emit("update:modelValue", blobFile);
 }
 
 function loadImage(file) {
     const reader = new FileReader();
     reader.onload = (e) => {
         imgSrc.value = e.target.result;
-        emit("loadImage", { image: imgSrc.value, file });
+        emit("loadImage", { video: imgSrc.value, file });
+        return imgSrc.value;
     };
     reader.readAsDataURL(file);
 }

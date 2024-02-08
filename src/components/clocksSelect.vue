@@ -34,26 +34,31 @@
             </v-sheet>
         </v-card>
 
-        <!-- Блок для  -->
+        <!-- Блок для записи видеоматериалов  -->
         <v-card class="pa-4 w-50 ml-5" v-show="true /* Тут был параметр id с маршрута */">
             <v-card-title class="pl-0">Видеозаписи</v-card-title>
+
+
+            <!-- =================  ПЕРВАЯ ЦИФРА  ========================== -->
             <v-card-title>Первая цифра</v-card-title>
             <v-card-text class="pa-1 d-flex flex-wrap">
                 <div class="mr-2" v-for="(first, index) in projectData.firstPosition" :key="index">
                     <clockInput 
                     v-model="projectData.firstPosition[index]" 
-                    @load-image="showImage"
                     />
                 </div>
             </v-card-text>
 
+            <!-- =================  ВТОРАЯ ЦИФРА  ========================== -->
             <v-card-title>Вторая цифра</v-card-title>
             <v-card-text class="pa-1 d-flex flex-wrap">
                 <div class="mr-2" v-for="(second, index) in projectData.secondPosition" :key="index">
-                    <clockInput v-model="projectData.secondPosition[index]" @load-image="showImage" />
+                    <clockInput v-model="projectData.secondPosition[index]" />
                 </div>
             </v-card-text>
 
+
+            <!-- =================  ТРЕТЯЯ ЦИФРА  ========================== -->
             <v-card-title>Третья цифра</v-card-title>
             <v-card-text class="pa-1 d-flex flex-wrap">
                 <div class="mr-2" v-for="(second, index) in projectData.thirdPosition" :key="index">
@@ -61,6 +66,7 @@
                 </div>
             </v-card-text>
 
+            <!-- =================  ЧЕТВЕРТАЯ ЦИФРА  ========================== -->
             <v-card-title>Четвертая цифра</v-card-title>
             <v-card-text class="pa-1 d-flex flex-wrap">
                 <div class="mr-2" v-for="(second, index) in projectData.fourthPosition" :key="index">
@@ -68,7 +74,7 @@
                 </div>
             </v-card-text>
 
-            <!-- Здесь был v-dialog -->
+            <!-- Здесь был v-dialog для просмотра видеочасов -->
             <v-btn block class="text-none" color="primary" @click="addedVideos">Добавить видео</v-btn>
         </v-card>
     </v-card>
@@ -76,16 +82,20 @@
   
 <script setup>
 import clockInput from './clockInput.vue';
-import { ref, onBeforeMount } from 'vue';
+import { ref, watch, onBeforeMount } from 'vue';
 import { createProject } from '@/api/clocks';
 
 onBeforeMount(() => {
 
 });
 // TEST
-function showImage(data) {
-    console.log('data', data);
-}
+// function showImage(data, index) {
+//     try {
+//         projectData.value.positionList[index] = data.video;
+//     } catch (err) {
+//         throw new Error(`components/clocksSelect:showImage => ${err}`);
+//     }
+// }
 
 const clockDialog = ref(false);
 const projectData = ref({
@@ -98,6 +108,11 @@ const projectData = ref({
     thirdPosition: [null, null, null, null, null, null],
     fourthPosition: [null, null, null, null, null, null, null, null, null, null],
 });
+
+
+watch(projectData.value, (newValue) => {
+    console.log('watch: ', newValue);
+}); 
 
 // Создание проекта
 async function createNewProject() {
